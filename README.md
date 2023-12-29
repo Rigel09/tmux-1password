@@ -1,6 +1,9 @@
 # tmux-1password
 
-[![Build Status](https://github.com/yardnsm/tmux-1password/workflows/main/badge.svg)](https://github.com/yardnsm/tmux-1password/actions)
+This is my fork of the fantastic project by yardnsm. I removed the ability to store the session
+token and reuse that token. This mitigates the risk of unauthorized access via the token.
+
+[![Build Status](https://github.com/Rigel09/tmux-1password/workflows/main/badge.svg)](https://github.com/Rigel09/tmux-1password/actions)
 
 > Access your 1Password login items within tmux!
 
@@ -29,9 +32,9 @@ In any tmux mode:
 
 1. Add plugin to the list of TPM plugins in `.tmux.conf`:
 
-    ```
-    set -g @plugin 'yardnsm/tmux-1password'
-    ```
+   ```
+   set -g @plugin 'Rigel09/tmux-1password'
+   ```
 
 2. Hit `prefix + I` to fetch the plugin and source it. You should now be able to use the plugin.
 
@@ -39,29 +42,29 @@ In any tmux mode:
 
 1. Clone this repo:
 
-    ```console
-    $ git clone https://github.com/yardnsm/tmux-1password ~/some/path
-    ```
+   ```console
+   $ git clone https://github.com/Rigel09/tmux-1password ~/some/path
+   ```
 
 2. Source the plugin in your `.tmux.conf` by adding the following to the bottom of the file:
 
-    ```
-    run-shell ~/some/path/plugin.tmux
-    ```
+   ```
+   run-shell ~/some/path/plugin.tmux
+   ```
 
 3. Reload the environment by running:
 
-    ```console
-    $ tmux source-file ~/.tmux.conf
-    ```
+   ```console
+   $ tmux source-file ~/.tmux.conf
+   ```
 
 ### Using older versions of 1Password's CLI
 
 If you're using an older version of the CLI (`< 2.0`), you can use this plugin via the
-[`legacy`](https://github.com/yardnsm/tmux-1password/tree/legacy) branch. For example, using TPM:
+[`legacy`](https://github.com/Rigel09/tmux-1password/tree/legacy) branch. For example, using TPM:
 
 ```
-set -g @plugin 'yardnsm/tmux-1password#legacy'
+set -g @plugin 'Rigel09/tmux-1password#legacy'
 ```
 
 ## Usage
@@ -170,4 +173,4 @@ Also see:
 
 ## License
 
-MIT © [Yarden Sod-Moriah](http://yardnsm.net/)
+MIT © [Yarden Sod-Moriah](http://Rigel09.net/)

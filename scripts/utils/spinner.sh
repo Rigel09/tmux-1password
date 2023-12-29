@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Taken from:
-# https://github.com/yardnsm/dotfiles/blob/master/_setup/utils/spinner.sh
+# https://github.com/Rigel09/dotfiles/blob/master/_setup/utils/spinner.sh
 
 # ------------------------------------------------------------------------------
 
