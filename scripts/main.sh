@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-cd "$(dirname "${BASH_SOURCE[0]}")" \
-  || exit 1
+cd "$(dirname "${BASH_SOURCE[0]}")" ||
+  exit 1
 
 # ------------------------------------------------------------------------------
 
@@ -35,7 +35,7 @@ main() {
 
   # Check for version
   if ! op::verify_version; then
-      return 0
+    return 0
   fi
 
   # Verify current session
@@ -48,28 +48,28 @@ main() {
   items="$(op::get_all_items)"
   spinner::stop
 
-  selected_item="$(echo "$items" | awk -F ',' '{ print $1 }' | fzf "${fzf_opts[@]}")"
+  selected_item=$(echo "$items" | fzf "${fzf_opts[@]}" | awk '{print $1}')
 
   if [[ -n "$selected_item" ]]; then
-    selected_item_name=${selected_item#*,}
-    selected_item_uuid="$(echo "$items" | grep "^$selected_item_name," | awk -F ',' '{ print $2 }')"
-
+    selected_item_uuid=${selected_item#*,}
     case ${selected_item%%,*} in
-      pass)
-        spinner::start "Fetching password"
-        selected_item_password="$(op::get_item_password "$selected_item_uuid")"
-        spinner::stop
-        ;;
+    pass)
+      spinner::start "Fetching password"
+      selected_item_password=$(op item get --cache --fields password "$selected_item_uuid")
+      spinner::stop
+      ;;
 
-      totp)
-        spinner::start "Fetching totp"
-        selected_item_password="$(op::get_item_totp "$selected_item_uuid")"
-        spinner::stop
-        ;;
+    totp)
+      spinner::start "Fetching totp"
+      selected_item_password=$(op item get --cache --otp "$selected_item_uuid")
+      spinner::stop
+      ;;
 
-      *)
-        tmux::display_message "Unknown item request"
-        ;;
+    *)
+      tmux::display_message "Unknown item request"
+      echo "Unknown item request"
+      sleep 5
+      ;;
     esac
 
     if options::copy_to_clipboard; then
